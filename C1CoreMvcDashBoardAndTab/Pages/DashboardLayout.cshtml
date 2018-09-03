@@ -1,0 +1,33 @@
+﻿@page
+@model C1CoreMvcDashBoardAndTab.Pages.DashboardLayoutModel
+@{
+    ViewData["Title"] = "DashboardLayout";
+}
+
+<h2>DashboardLayout</h2>
+
+<c1-dashboard-layout id="SampleDashboard" allow-drag="true" allow-hide="true" allow-maximize="true" allow-resize="true" allow-show-all="true">
+    <c1-flow-layout direction="LeftToRight">
+        <c1-flow-tile header-text="Category Sales" width="500" height="450">
+            <c1-flex-pie binding-name="ProductName" binding="Sales">
+                <c1-items-source source-collection="@Model.data"></c1-items-source>
+            </c1-flex-pie>
+        </c1-flow-tile>
+        <c1-flow-tile header-text="Products Stock" width="500" height="450">
+            <c1-flex-chart binding-x="ProductName" legend-position="Top" chart-type="Column">
+                <c1-items-source source-collection="@Model.data"></c1-items-source>
+                <c1-flex-chart-series name="Stock Units" binding="UnitsInStock"></c1-flex-chart-series>
+                <c1-flex-chart-series name="Order Units" binding="UnitsOnOrder"></c1-flex-chart-series>
+            </c1-flex-chart>
+        </c1-flow-tile>
+        <c1-flow-tile header-text="Product Details" width="1000" height="250">
+            <c1-flex-grid auto-generate-columns="false">
+                <c1-flex-grid-column binding="ProductID" width="150"></c1-flex-grid-column>
+                <c1-flex-grid-column binding="ProductName" width="150"></c1-flex-grid-column>
+                <c1-flex-grid-column binding="Category" width="150"></c1-flex-grid-column>
+                <c1-flex-grid-column binding="Descriptison" width="*"></c1-flex-grid-column>
+                <c1-items-source source-collection="@Model.data"></c1-items-source>
+            </c1-flex-grid>
+        </c1-flow-tile>
+    </c1-flow-layout>
+</c1-dashboard-layout>
